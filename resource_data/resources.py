@@ -22,6 +22,7 @@ poses = {DEF_ARTICLE: 'definite article',
          ND: 'not defined'
          }
 
+
 secondary_poses = {
 
     'inf': 'infinitive',
