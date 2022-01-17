@@ -3,6 +3,7 @@ from sqlalchemy.exc import IntegrityError
 
 
 class UserModel(db.Model):
+    query: db.Query
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -60,3 +61,6 @@ class UserModel(db.Model):
         except IntegrityError:
             db.session.rollback()
             return {'message': 'username or email already registered'}
+
+    def __str__(self):
+        return str(self.id)

@@ -21,6 +21,8 @@ class User(BaseIntegrationTest):
             self.assertEqual('password', user_inst_2.password)
             self.assertEqual(1, user_inst_3.id)
 
+            print(user)
+
     def test_duplication(self):
         with self.app_context:
             user1 = UserModel('mail@com.pl', 'user_name', 'password', 444444444)
@@ -28,6 +30,6 @@ class User(BaseIntegrationTest):
 
             user1.insert()
             user2.insert()
-            users = UserModel.query.filter_by('username'='user_name')
+            users = UserModel.query.filter_by(username='user_name')
 
 

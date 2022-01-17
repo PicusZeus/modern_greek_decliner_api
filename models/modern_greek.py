@@ -43,6 +43,8 @@ class GreekLemmata(db.Model):
         else:
             return None
 
+    def __str__(self):
+        return f"id={self.id}, lemma={self.lemma}, pos={self.pos_id}"
 
 class GreekForms(db.Model):
     __tablename__ = 'greek_forms'

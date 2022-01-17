@@ -21,6 +21,7 @@ api = Api(app)
 # create tables
 @app.before_first_request
 def create_tables():
+    from files.db import db
     db.create_all()
 
 
