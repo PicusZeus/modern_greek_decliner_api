@@ -1,23 +1,25 @@
-poses = {'def_article': 'definite article',
-         'ind_article': 'indefinite article',
-         'conj': 'conjunction',
-         'no_tag': 'not classified',
-         'part': 'particle',
-         'excl': 'exclamation',
-         'noun': 'noun',
-         'prep': 'preposition',
-         'adv': 'adverb',
-         'pron': 'pronoun',
-         'verb': 'verb',
-         'num': 'numeral',
-         'properN': 'proper noun',
-         'adj': 'adjective',
-         'adv_adj': "adverb adjective",
-         'pers_pron': 'personal pronoun',
-         'pron_noun': 'pronoun noun',
-         'adv_conj': ' conjunctive adverb',
-         'acronym': 'acronym',
-          'nd': 'not defined'
+from resource_data.variables import *
+
+poses = {DEF_ARTICLE: 'definite article',
+         IND_ARTICLE: 'indefinite article',
+         CONJ: 'conjunction',
+         NO_TAG: 'not classified',
+         PART: 'particle',
+         EXCL: 'exclamation',
+         NOUN: 'noun',
+         PREP: 'preposition',
+         ADV: 'adverb',
+         PRON: 'pronoun',
+         VERB: 'verb',
+         NUM: 'numeral',
+         PROPER_N: 'proper noun',
+         ADJ: 'adjective',
+         ADV_ADJ: "adverb adjective",
+         PERS_PRON: 'personal pronoun',
+         PRON_NOUN: 'pronoun noun',
+         ADV_CONJ: ' conjunctive adverb',
+         ACRONYM: 'acronym',
+         ND: 'not defined'
          }
 
 secondary_poses = {
@@ -27,7 +29,6 @@ secondary_poses = {
     'imps': 'impersonal',
     'ind': 'indicative',
     'adj': 'adjective',
-
 
     'pant': 'adverbial past active participle',
     'pcon': 'adverbial present active participle',
@@ -43,12 +44,11 @@ secondary_poses = {
     'comp_adv': 'comparative adverb',
     'superl_adv': 'superlative adverb',
 
-
     'card': 'cardinal numeral',
     'ord': 'ordinal numeral',
     'freq': 'frequency numeral adjective',
     'noun_num': 'noun numeral',
-    
+
     'nakc': 'weak personal pronoun',
     'akc': 'strong personal pronoun',
     'nd': 'not defined',
@@ -163,9 +163,7 @@ length_of_endings = {
     ]
 }
 
-pronouns= ['εγώ', 'εσύ', 'αυτός, αυτή, αυτό', 'εμείς', 'εσείς', 'αυτοί, αυτές, αυτά']
-
-
+pronouns = ['εγώ', 'εσύ', 'αυτός, αυτή, αυτό', 'εμείς', 'εσείς', 'αυτοί, αυτές, αυτά']
 
 common_tenses = {'fin': 'present', 'past': 'past', 'fut': 'future', 'nd': 'not defined'}
 
@@ -192,7 +190,8 @@ greek_tenses = {
 
 }
 
-cases = {'voc': 'vocative', 'gen': 'genitive', 'acc': 'accusative', 'nom': 'nominative', 'dat': 'dative', 'nd': 'not defined'}
+cases = {'voc': 'vocative', 'gen': 'genitive', 'acc': 'accusative', 'nom': 'nominative', 'dat': 'dative',
+         'nd': 'not defined'}
 
 persons = {'pri', 'sec', 'ter', 'impersonal', 'nd'}
 
@@ -203,5 +202,3 @@ numbers = {'sg', 'pl', 'dual', 'nd'}
 aspects = {'imperf', 'perf', 'nd'}
 
 voices = {'passive', 'active', 'middle', 'deponens', 'nd'}
-
-
