@@ -1,6 +1,6 @@
 from test.integration.base_integration import BaseIntegrationTest
 from models.modern_greek import GreekLemmata, GreekForms
-
+from models.common_grammar import Poses
 
 class GreekLemma(BaseIntegrationTest):
 
@@ -30,3 +30,35 @@ class GreekLemma(BaseIntegrationTest):
             lemma4.save_to_db()
             _all = GreekLemmata.query.all()
             self.assertEqual(len(_all), 3)
+
+
+class GreekForm(BaseIntegrationTest):
+
+    def test_insert(self):
+        with self.app_context:
+            greek_form = GreekForms('κάνω', 'κανω', 'kano', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            greek_form.save_to_db()
+            g_f = GreekForms.query.filter_by(form='κάνω').first()
+            self.assertEqual(g_f.person_id, 1)
+
+    def test_duplicates(self):
+        with self.app_context:
+            greek_form1 = GreekForms('κάνω', 'κανω', 'kano', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1).save_to_db()
+
+            greek_form2 = GreekForms('κάνω', 'κανω', 'kano', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1).save_to_db()
+
+            forms = GreekForms.query.filter_by(form='κάνω').all()
+            self.assertEqual(len(forms), 1)
+
+    def test_link_to_lemma(self):
+        with self.app_context:
+            lemma = GreekLemmata('κάνω', 1, 'comment')
+            lemma.save_to_db()
+
+            greek_form = GreekForms('κάνω', 'kano', 'kano', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            greek_form.save_to_db()
+            self.assertEqual(greek_form.lemma.name, 'κάνω')
+
+    def test_link_to_pos(self):
+        with self.app_context:
+            pos = Poses

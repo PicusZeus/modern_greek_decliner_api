@@ -22,6 +22,7 @@ def find_id_by_name(cls, name):
 class Poses(db.Model):
     # stores basic POSes used in lemmata
     __tablename__ = 'poses'
+    __table_args__ = (db.UniqueConstraint('name'),)
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33))
@@ -41,6 +42,8 @@ class Poses(db.Model):
 
 class Cases(db.Model):
     __tablename__ = 'cases'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33))
@@ -59,6 +62,8 @@ class Cases(db.Model):
 
 class Persons(db.Model):
     __tablename__ = 'persons'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33), unique=True)
@@ -77,6 +82,8 @@ class Persons(db.Model):
 
 class Numbers(db.Model):
     __tablename__ = 'numbers'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33), unique=True)
@@ -96,6 +103,8 @@ class Numbers(db.Model):
 
 class Genders(db.Model):
     __tablename__ = 'genders'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33))
@@ -114,6 +123,8 @@ class Genders(db.Model):
 
 class Aspects(db.Model):
     __tablename__ = 'aspects'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33), unique=True)
@@ -132,6 +143,8 @@ class Aspects(db.Model):
 
 class Voices(db.Model):
     __tablename__ = 'voices'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33), unique=True)
@@ -151,6 +164,8 @@ class Voices(db.Model):
 class SecondaryPoses(db.Model):
     # stores secondary POSes like infinitive, superlative etc used in models
     __tablename__ = 'secondary_poses'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33))
@@ -173,6 +188,8 @@ class Tenses(db.Model):
     # though in Greek and Polish the last one wont be used
 
     __tablename__ = 'tenses'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33))
@@ -195,6 +212,8 @@ class Moods(db.Model):
     # though in Greek and Polish the last one wont be used
 
     __tablename__ = 'moods'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     full_name = db.Column(db.String(33))
@@ -215,6 +234,8 @@ class Moods(db.Model):
 class GreekTenses(db.Model):
 
     __tablename__ = 'greek_tenses'
+    __table_args__ = (db.UniqueConstraint('name'),)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(33), unique=True)
     tense_id = db.Column(db.Integer, db.ForeignKey('tenses.id'), nullable=False)

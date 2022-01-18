@@ -76,14 +76,14 @@ greek_tenses = {
     'simple imperative': [PRES, IMPT, PERF, None],
     'aorist': [PAST, IND, PERF, None],
     'paratatikos': [PAST, IND, IMPERF, None],
-    'perfect': [AUX_PRES, PERF],
-    'future perfect': [AUX_PRES, PERF, THA],
-    'past perfect': [AUX_PAST, PERF],
-    'dinitiki': [PAST, IMPERF, THA],
-    'optative_2': [PAST, IMPERF, NA],
-    'first conditional': [PRES, PERF, AN],
-    'second conditional': [PAST, IMPERF, AN],
-    'third conditional': [AUX_PAST, PERF, AN]
+    'perfect': [AUX_PRES, IND, PERF, None],
+    'future perfect': [AUX_PRES, SUBJ, PERF, THA],
+    'past perfect': [AUX_PAST, IND, PERF, None],
+    'dinitiki': [PAST, IND, IMPERF, THA],
+    'optative_2': [PAST, IND, IMPERF, NA],
+    'first conditional': [PRES, SUBJ, PERF, AN],
+    'second conditional': [PAST, IND, IMPERF, AN],
+    'third conditional': [AUX_PAST, IND, PERF, AN]
 
 }
 

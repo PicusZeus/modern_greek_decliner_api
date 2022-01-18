@@ -6,7 +6,7 @@ class ModernGreek(UnitBaseTest):
 
     def test_greek_lemmata(self):
         greek_lemma = GreekLemmata('άνθρωπος', 3, 'comment')
-        self.assertEqual(greek_lemma.lemma, 'άνθρωπος')
+        self.assertEqual(greek_lemma.name, 'άνθρωπος')
         self.assertEqual(greek_lemma.pos_id, 3)
         self.assertEqual(greek_lemma.comments, 'comment')
 

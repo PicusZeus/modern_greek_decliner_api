@@ -8,25 +8,24 @@ def save_to_db(self):
     db.session.add(self)
     try:
         db.session.commit()
-        print('saved')
+        # print('saved')
     except IntegrityError as e:
-        print(e)
+        # print(e)
         db.session.rollback()
 
 
 class GreekLemmata(db.Model):
-
     __tablename__ = 'greek_lemmata'
-    __table_args__ = (db.UniqueConstraint('lemma', 'pos_id'),)
+    __table_args__ = (db.UniqueConstraint('name', 'pos_id'),)
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    lemma = db.Column(db.String(40), nullable=False)
+    name = db.Column(db.String(40), nullable=False)
     pos_id = db.Column(db.Integer, db.ForeignKey('poses.id'), nullable=False)
     pos = db.relationship('Poses')
     comments = db.Column(db.String(256))
 
-    def __init__(self, lemma, pos_id, comments):
-        self.lemma = lemma
+    def __init__(self, name, pos_id, comments):
+        self.name = name
         self.pos_id=pos_id
         self.comments = comments
 
@@ -35,7 +34,7 @@ class GreekLemmata(db.Model):
 
     @classmethod
     def find_id_by_name(cls, name, pos_id):
-        lemma = cls.query.filter(cls.lemma == name, cls.pos_id == pos_id).first()
+        lemma = cls.query.filter(cls.name == name, cls.pos_id == pos_id).first()
         if lemma:
             lemma_id = lemma.id
 
@@ -44,18 +43,22 @@ class GreekLemmata(db.Model):
             return None
 
     def __str__(self):
-        return f"id={self.id}, lemma={self.lemma}, pos={self.pos_id}"
+        return f"id={self.id}, lemma={self.name}, pos={self.pos_id}"
+
 
 class GreekForms(db.Model):
+    query: db.Query
     __tablename__ = 'greek_forms'
     __table_args__ = (db.UniqueConstraint('form', 'person_id', 'number_id', 'gender_id', 'aspect_id',
                                           'lemma_id', 'case_id', 'voice_id', 'secondary_pos_id', 'tense_id'),)
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
     form = db.Column(db.Text(80), nullable=False)
     unaccented_form = db.Column(db.Text(80))  # easier searching
     latin_transcription = db.Column(db.Text(80))  # transcription to use with regexes
     person_id = db.Column(db.Integer, db.ForeignKey('persons.id'))
     person = db.relationship('Persons')
+
     number_id = db.Column(db.Integer, db.ForeignKey('numbers.id'))
     number = db.relationship('Numbers')
     gender_id = db.Column(db.Integer, db.ForeignKey('genders.id'))
@@ -78,6 +81,8 @@ class GreekForms(db.Model):
     # these poses are more specific: adverb, comparative, participle etc
     tense_id = db.Column(db.Integer, db.ForeignKey('tenses.id'))
     tense = db.relationship('Tenses')
+
+
 
     def __init__(self, form, unaccented_form, latin_transcription, person_id, number_id, gender_id, aspect_id,
                  case_id, lemma_id, voice_id, object_case_id, secondary_pos_id, tense_id):
